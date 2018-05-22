@@ -1327,12 +1327,17 @@ DataTable.ext.buttons.pdfHtml5 = {
 		var rows = [];
 
 		if ( config.header ) {
-			rows.push( $.map( data.header, function ( d ) {
-				return {
-					text: typeof d === 'string' ? d : d+'',
-					style: 'tableHeader'
-				};
-			} ) );
+			var headerMatrix = _fnGetHeaders(dt);
+			for ( var rowIdx = 0;  rowIdx < headerMatrix.length;  rowIdx++ ) {
+			    //addRow( headerMatrix[rowIdx], rowPos );
+				rows.push( $.map( headerMatrix[rowIdx], function ( d ) {
+					return {
+						text: typeof d === 'string' ? d : d+'',
+						style: 'tableHeader'
+					};
+				} ) );
+			}
+			
 		}
 
 		for ( var i=0, ien=data.body.length ; i<ien ; i++ ) {
